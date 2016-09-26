@@ -8,7 +8,12 @@
 struct FileRows {
 	char *row;
 	FileRows *addr;
-
 };
 
 FileRows *&loadFileToStack(char*);
+
+void renumber(FileRows*&);
+void purge(FileRows*&);
+
+void pop(FileRows*&);
+void push(char*&, FileRows*&);
