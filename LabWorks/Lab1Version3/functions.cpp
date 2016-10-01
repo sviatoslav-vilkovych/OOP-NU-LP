@@ -26,6 +26,7 @@ void pop(FileRows *&pHeader)
 {
 	FileRows *pPopValue = pHeader;
 	pHeader = pHeader->addr;
+	
 	free(pPopValue);
 }
 void purge(FileRows *&pHeader)
@@ -77,7 +78,6 @@ void renumber(FileRows *&pHeader)
 			str[i] = (pHeaderCopy->row)[i - 3];
 		}
 		strcpy(pHeaderCopy->row, str);
-		//free(str);
 		pHeaderCopy = pHeaderCopy->addr;
 		--counter;
 	}
