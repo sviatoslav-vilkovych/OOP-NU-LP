@@ -1,10 +1,13 @@
 #pragma once
 
 #include <cstdlib>
-#include <string.h>
+#include <string>
 #include <iostream>
 #include <fstream>
+#include <Windows.h>
+
 using namespace std;
+
 
 struct FileRows {
 	char *row;

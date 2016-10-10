@@ -51,36 +51,6 @@ void purge(FileRows *&pHeader)
 }
 void renumber(FileRows *&pHeader)
 {
-	/*
-	FileRows *pHeaderCopy = pHeader;
-	FileRows *pLast = pHeader;
-	int counter = 1;
-	*/
-	/*
-	while (pLast->addr != 0)
-	{
-		pLast = pLast->addr;
-		++counter;
-	}
-	*/
-	/*
-	while (NULL != pHeaderCopy)
-	{
-		char *str = new char[strlen(pHeaderCopy->row) + 3];
-		_itoa_s(counter, str, strlen(str), 10);
-		str[1] = ':';
-		str[2] = ' ';
-		int length = strlen(str);
-		for (int i = 3; i < length; ++i)
-		{
-			str[i] = (pHeaderCopy->row)[i - 3];
-		}
-		strcpy_s(pHeaderCopy->row, strlen(pHeaderCopy->row), str);
-		pHeaderCopy = pHeaderCopy->addr;
-		--counter;
-	}
-	*/
-
 	FileRows *pHeaderCopy = pHeader, *pLast = pHeader;
 	int counter = 0;
 	
@@ -106,7 +76,6 @@ void renumber(FileRows *&pHeader)
 		--counter;
 		pHeaderCopy = pHeaderCopy->addr;
 	}
-
 }
 
 FileRows *&loadFileToStack(char* fileAddr)
