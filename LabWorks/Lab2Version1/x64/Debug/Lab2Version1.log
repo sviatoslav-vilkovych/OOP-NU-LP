@@ -1,0 +1,6 @@
+﻿  main.cpp
+  functions.cpp
+d:\desktop\pg\visual studio\study in nu lp\ii stage\oop\labworks\lab2version1\functions.cpp(6): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\desktop\pg\visual studio\study in nu lp\ii stage\oop\labworks\lab2version1\functions.cpp(64): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
+  Lab2Version1.vcxproj -> D:\Desktop\pg\Visual Studio\Study in NU LP\II stage\OOP\LabWorks\x64\Debug\Lab2Version1.exe

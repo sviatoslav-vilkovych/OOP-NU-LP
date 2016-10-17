@@ -1,0 +1,16 @@
+﻿  main.cpp
+d:\desktop\pg\visual studio\study in nu lp\ii stage\oop\labworks\lab1version3\main.cpp(9): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+  functions.cpp
+d:\desktop\pg\visual studio\study in nu lp\ii stage\oop\labworks\lab1version3\functions.cpp(6): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\desktop\pg\visual studio\study in nu lp\ii stage\oop\labworks\lab1version3\functions.cpp(13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\desktop\pg\visual studio\study in nu lp\ii stage\oop\labworks\lab1version3\functions.cpp(75): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\desktop\pg\visual studio\study in nu lp\ii stage\oop\labworks\lab1version3\functions.cpp(72): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdlib.h(1316): note: see declaration of 'itoa'
+d:\desktop\pg\visual studio\study in nu lp\ii stage\oop\labworks\lab1version3\functions.cpp(80): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: see declaration of 'strcpy'
+d:\desktop\pg\visual studio\study in nu lp\ii stage\oop\labworks\lab1version3\functions.cpp(88): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
+  Generating Code...
+d:\desktop\pg\visual studio\study in nu lp\ii stage\oop\labworks\lab1version3\functions.cpp(115): warning C4172: returning address of local variable or temporary: pHeader
+  Lab1Version3.vcxproj -> D:\Desktop\pg\Visual Studio\Study in NU LP\II stage\OOP\LabWorks\x64\Debug\Lab1Version3.exe
