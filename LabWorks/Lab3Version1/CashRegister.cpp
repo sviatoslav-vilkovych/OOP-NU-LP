@@ -46,6 +46,8 @@ CashRegister::CashRegister(int max_amount_of_moneyL, size_t left_paperL, size_t 
 		work_hours[0][j] = work_hoursL[0][j];
 		work_hours[1][j] = work_hoursL[1][j];
 	}
+
+
 }
 CashRegister::CashRegister(const CashRegister &obj)
 {
