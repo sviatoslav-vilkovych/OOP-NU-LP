@@ -1,0 +1,23 @@
+_____________________________________________
+Cash Register #10000 :
+Work hours of this cash:
+	Monday:      8:00 to 18:00;
+	Tuesday:     8:00 to 18:00;
+	Wednesday:   8:00 to 18:00;
+	Thursday:    8:00 to 18:00;
+	Friday:      8:00 to 18:00;
+	Saturday:   -> Weekend <-;
+	Sunday:     -> Weekend <-;
+	
+Avaliable flights from the cash:
+	No avaliable flights registred.
+
+Already sold 0 tickets;
+Earn 0$ (of maximum 10000);
+Paper remained 1000;
+
+List of returned tickets:
+	No returned tickets.
+
+Sold Tickets:
+	No sold tickets.
