@@ -218,6 +218,13 @@ int CashRegister::initClass()
 		
 	}
 
+	cout << "Please enter avaliable flights (\"Q\" for quit):\n\t";
+	char *flight = new char[20];
+	while ()
+	{
+
+	}
+
 	return 1;
 }
 int CashRegister::initClassFromFile()
@@ -258,8 +265,10 @@ int CashRegister::initClassFromFile()
 			init.seekg(12, ios::cur);
 		}
 	}
-
-
+	while ((ch = init.get()) != ':'); // :
+	init.seekg(3, ios::cur);
+	
+	// Aval flights.
 
 	init.close();
 	cout << "\n<<< Information about CashRegister#" << number << " initialized from file. >>>\n";
@@ -269,4 +278,9 @@ int CashRegister::initClassFromFile()
 //for updating prog
 void CashRegister::sold(char* flightLocation, char* passangerName, size_t amount_of_tickets)
 {
+	/* SHOULD FIND IN MAP flightLocation */
+	bool isFlightPossible = false; // NOT WRITTEN
+	bool isPaperEnough = (amount_of_tickets <= paper_remained) ? true : false;
+	
+	// price also
 }
