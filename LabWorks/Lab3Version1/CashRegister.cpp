@@ -1,4 +1,3 @@
-#include "CashRegister.h"
 #include "header.h"
 
 /* methods */
@@ -13,8 +12,7 @@ CashRegister::CashRegister()
 	max_amount_of_money = 10000;
 	paper_remained = 1000;
 
-	passenger = new char[6];
-	passenger = "empty\0";
+	set_passenger("empty");
 	
 	// from M to F = 8-18; Sat,Sun = holiday;
 	for (int j = 0; j < 5; ++j)
@@ -29,7 +27,7 @@ CashRegister::CashRegister()
 
 	/* NO AVALIABLE FLIGHTS ???*/
 }
-CashRegister::CashRegister(const int &max_amount_of_moneyL,const size_t &left_paperL, short int **work_hoursL, map<int , char *> avaliable_flightsL)
+CashRegister::CashRegister(const int &max_amount_of_moneyL,const size_t &left_paperL, short int **work_hoursL, vector<char *> avaliable_flightsL)
 {
 	number = freeCashNum;
 	++freeCashNum;
@@ -56,7 +54,6 @@ CashRegister::CashRegister(const CashRegister &obj)
 }
 CashRegister::~CashRegister() 
 {
-	
 	returned_tickets.clear();
 	sold_tickets.clear();
 	avaliable_flights.clear();
@@ -64,8 +61,9 @@ CashRegister::~CashRegister()
 // output
 void CashRegister::printClass() 
 {
-	cout << "_____________________________________________";
-	cout << "\nCash Register #" << number << " :\n";
+	cout.clear();
+	cout << "__________________________________________________________________________\n";
+	cout << "Cash Register #" << number << " :\n";
 	
 	/* WORK HOURS */
 	cout << "Work hours of this cash:\n\t";
@@ -81,30 +79,34 @@ void CashRegister::printClass()
 	}
 	/* AVALIABLE FLIGHTS */
 	cout << "\nAvaliable flights from the cash:\n\t";
-	map<int, char*>::iterator flights;
+	vector<char*>::iterator flights;
 	flights = avaliable_flights.begin();
 	if (flights == avaliable_flights.end())
 		cout << "No avaliable flights registred.\n";
 	else
 		while (flights != avaliable_flights.end())
 		{
-			cout << "> " << flights->second << "\n\t";
+			cout << "> " << *flights << "\n\t";
 			++flights;
 		}
+
 	/* CAUTION! PRIVATE INFORMATION */
 	cout << "\nAlready sold " << num_sold_tickets << " tickets;\n";
 	cout << "Earn " << earned_money << "$ (of maximum " << max_amount_of_money << ");\n";
 	cout << "Paper remained " << paper_remained << ";\n";
 	
 	cout << "\nList of returned tickets:\n\t";
-	map<char*, ticket>::iterator tickets;
+	vector<ticket*>::iterator tickets;
 	tickets = returned_tickets.begin();
 	if (tickets == returned_tickets.end())
 		cout << "No returned tickets.\n";
 	else
 		while (tickets != returned_tickets.end())
 		{	
-			cout << "#" << (tickets->second).number << " | Name of passenger: " << (tickets->second).passenger << " | Route: " << (tickets->second).route << "\n\t";
+			cout	<< "#" << (*tickets)->get_num() 
+					<< " | Name of passenger: " << (*tickets)->get_pass() 
+					<< "\n\t\t| Route: " << (*tickets)->get_route() 
+					<< "\n\t\t| Price: " << (*tickets)->get_price() << "\n\t";
 			++tickets;
 		}
 	cout << "\nSold Tickets:\n\t";
@@ -114,9 +116,13 @@ void CashRegister::printClass()
 	else
 		while (tickets != sold_tickets.end())
 		{
-			cout << "#" << (tickets->second).number << " | Name of passenger: " << (tickets->second).passenger << " | Route: " << (tickets->second).route << "\n\t";
+			cout	<< "#" << (*tickets)->get_num()
+					<< " | Name of passenger: " << (*tickets)->get_pass()
+					<< "\n\t\t| Route: " << (*tickets)->get_route()
+					<< "\n\t\t| Price: " << (*tickets)->get_price() << "\n\t";
 			++tickets;
-		}	
+		}
+	cout << "\n__________________________________________________________________________\n";
 } 
 void CashRegister::printClassToFile()
 {
@@ -130,11 +136,9 @@ void CashRegister::printClassToFile()
 	strcat_s(str, cashRegister);
 	strcat_s(str, ".txt");
 	
-	fstream output(str, ios::out | ios::app);
+	fstream output(str, ios::out | ios::trunc);
 
-
-	output << "_____________________________________________";
-	output << "\nCash Register #" << number << " :\n";
+	output << "Cash Register #" << number << " :\n";
 
 	/* WORK HOURS */
 	output << "Work hours of this cash:\n\t";
@@ -150,42 +154,57 @@ void CashRegister::printClassToFile()
 	}
 	/* AVALIABLE FLIGHTS */
 	output << "\nAvaliable flights from the cash:\n\t";
-	map<int, char*>::iterator flights;
+	vector<char*>::iterator flights;
 	flights = avaliable_flights.begin();
 	if (flights == avaliable_flights.end())
-		output << "No avaliable flights registred.\n";
+		output << "!No avaliable flights registred!\n\t";
 	else
+	{
 		while (flights != avaliable_flights.end())
 		{
-			output << "> " << flights->second << "\n\t";
+			output << "> " << *flights << "\n\t";
 			++flights;
 		}
+		output << "!No more avaliable flights registred!\n\t";
+	}
 	/* CAUTION! PRIVATE INFORMATION */
 	output << "\nAlready sold " << num_sold_tickets << " tickets;\n";
 	output << "Earn " << earned_money << "$ (of maximum " << max_amount_of_money << ");\n";
 	output << "Paper remained " << paper_remained << ";\n";
 
 	output << "\nList of returned tickets:\n\t";
-	map<char*, ticket>::iterator tickets;
+	vector<ticket*>::iterator tickets;
 	tickets = returned_tickets.begin();
 	if (tickets == returned_tickets.end())
-		output << "No returned tickets.\n";
+		output << "!No returned tickets!\n";
 	else
+	{
 		while (tickets != returned_tickets.end())
 		{
-			output << "#" << (tickets->second).number << " | Name of passenger: " << (tickets->second).passenger << " | Route: " << (tickets->second).route << "\n\t";
+			output	<< "#" << (*tickets)->get_num() 
+					<< " | Name of passenger: " << (*tickets)->get_pass()
+					<< "\n\t\t| Route: " << (*tickets)->get_route() 
+					<< "\n\t\t| Price: " << (*tickets)->get_price() << "\n\t";
 			++tickets;
 		}
+		output << "!No more returned tickets!\n";
+	}
 	output << "\nSold Tickets:\n\t";
 	tickets = sold_tickets.begin();
 	if (tickets == sold_tickets.end())
-		output << "No sold tickets.\n";
+		output << "!No sold tickets!\n";
 	else
+	{
 		while (tickets != sold_tickets.end())
 		{
-			output << "#" << (tickets->second).number << " | Name of passenger: " << (tickets->second).passenger << " | Route: " << (tickets->second).route << "\n\t";
+			output	<< "#" << (*tickets)->get_num() 
+					<< " | Name of passenger: " << (*tickets)->get_pass() 
+					<< "\n\t\t| Route: " << (*tickets)->get_route() 
+					<< "\n\t\t| Price: " << (*tickets)->get_price() <<"\n\t";
 			++tickets;
 		}
+		output << "!No more solded tickets!\n";
+	}
 
 	cout << "\n<<< Information about CashRegister#" << number << " written to file. >>>\n";
 
@@ -194,6 +213,7 @@ void CashRegister::printClassToFile()
 // input
 int CashRegister::initClass()
 {
+	cout.clear();
 	cout << "__________________________________________________________________________\n";
 	cout << "Please enter max amount money for cash register before cash collection: ";
 	cin >> max_amount_of_money;
@@ -204,9 +224,9 @@ int CashRegister::initClass()
 	cin >> paper_remained_prot;
 	paper_remained = (paper_remained_prot < 0) ? -paper_remained_prot : paper_remained_prot;
 
-	cout << "Please enter work hours of this cash:\n\t";
-	char *nameOfDays[7] = { { "Monday: " },{ "Tuesday: " },{ "Wednesday: " } ,{ "Thursday: " } ,{ "Friday: " } ,{ "Saturday: " } ,{ "Sunday: " } };
-	
+	cout << "Please enter work hours of this cash ('-1' for weekend):\n\t";
+	char nameOfDays[7][13] = { { "Monday: " },{ "Tuesday: " },{ "Wednesday: " } ,{ "Thursday: " } ,{ "Friday: " } ,{ "Saturday: " } ,{ "Sunday: " } };
+
 	for (int i = 0; i < 7; ++i)
 	{
 		cout << nameOfDays[i] << "\n\t";
@@ -218,26 +238,39 @@ int CashRegister::initClass()
 		
 	}
 
-	cout << "Please enter avaliable flights (\"Q\" for quit):\n\t";
-	char *flight = new char[20];
-	while ()
-	{
-
+	cout << "\nPlease enter avaliable flights (\"q\" for quit):\n\t";
+	cin.clear();
+	cin.get();
+	while (true) {
+		
+		char *flight = new char[30];
+		cin.getline(flight, 30);
+		if ('\0' == flight[0])
+			break;
+		cout << "\t";
+		avaliable_flights.push_back(flight);
 	}
-
-	return 1;
+	cout.clear();
+	cout << "__________________________________________________________________________\n";
+	return 0;
 }
-int CashRegister::initClassFromFile()
+// NOT DONE
+int CashRegister::initClassFromFile(char *fileName)
 {
 	char cashRegister[10];
 	_itoa_s(number, cashRegister, 10, 10);
 
 	/* strcat_s somewhy don't work with dynamic memory. */
-
+	
 	char str[40];
-	strcpy_s(str, "CashRegister#");
-	strcat_s(str, cashRegister);
-	strcat_s(str, ".txt");
+	if (NULL == fileName)
+	{
+		strcpy_s(str, "CashRegister#");
+		strcat_s(str, cashRegister);
+		strcat_s(str, ".txt");
+	}
+	else
+		strcpy_s(str, fileName);
 
 	fstream init(str, ios::in | ios::binary);
 	if (!init) {
@@ -259,28 +292,203 @@ int CashRegister::initClassFromFile()
 			init >> work_hours[1][i];
 			//init.read((char*)&(work_hours[1][i]), sizeof work_hours[1][i]);
 		}
-		if (i != 6)
-		{
-			while ((ch = init.get()) != 9); // horizontal tab = 9
-			init.seekg(12, ios::cur);
-		}
-	}
-	while ((ch = init.get()) != ':'); // :
-	init.seekg(3, ios::cur);
-	
-	// Aval flights.
+		else
+			work_hours[0][i] = work_hours[1][i] = -1;
 
+		while ((ch = init.get()) != 9); // horizontal tab = 9
+		if (6 != i)
+			init.seekg(12, ios::cur);
+	}
+
+	while (ch = init.get() != ':'); // 
+	init.seekg(3, ios::cur);
+	// Aval flights.
+	while ((ch = init.get()) != '!')
+	{
+		init.seekg(1, ios::cur);
+		char *aval = new char[30];
+		init.getline(aval, 30, '\r');
+		avaliable_flights.push_back(aval);
+		init.seekg(2, ios::cur); 
+	}
+	// Sold tickets
+	init.seekg(54, ios::cur);
+	init >> num_sold_tickets;
+	// Earn $$$
+	init.seekg(15, ios::cur);
+	init >> earned_money;
+	init.seekg(14, ios::cur);
+	init >> max_amount_of_money;
+	// Paper remained
+	init.seekg(18, ios::cur);
+	init >> paper_remained;
+	
+	// List of returned tickets
+	while ((ch = init.get()) != ':');
+	init.seekg(3, ios::cur);
+	while ((ch = init.get()) != '!')
+	{
+		size_t tick = 0, money = 0;
+		int how_much_go_back = 0;
+		char *passengerName = NULL, *flightLocation = NULL;
+
+		init >> tick;
+		/* PASSENGER NAME */
+		init.seekg(22, ios::cur);
+		while ((ch = init.get()) != '\r')
+			++how_much_go_back;
+		init.seekg(-1 * (how_much_go_back + 1), ios::cur);
+		passengerName = new char[how_much_go_back + 1];
+		for (int i = 0; i < how_much_go_back; ++i)
+			passengerName[i] = init.get();
+		passengerName[how_much_go_back] = '\0';
+		how_much_go_back = 0;
+		/* FLIGHT LOCATION */
+		init.seekg(13, ios::cur);
+		while ((ch = init.get()) != '\r')
+			++how_much_go_back;
+		init.seekg(-1 * (how_much_go_back + 1), ios::cur);
+		flightLocation = new char[how_much_go_back + 1];
+		for (int i = 0; i < how_much_go_back; ++i)
+			flightLocation[i] = init.get();
+		flightLocation[how_much_go_back] = '\0';
+		/* PRICE */
+		init.seekg(13, ios::cur);
+		init >> money;
+
+		ticket *returned_ticket = new ticket(tick, passengerName, flightLocation, money);
+
+		returned_tickets.push_back(returned_ticket);
+		init.seekg(3, ios::cur);
+	}
+
+	// Sold Tickets list
+	while ((ch = init.get()) != ':');
+	init.seekg(3, ios::cur);
+	while ((ch = init.get()) != '!')
+	{
+		size_t tick = 0, money = 0;
+		int how_much_go_back = 0;
+		char *passengerName = NULL, *flightLocation = NULL;
+
+		init >> tick;
+		/* PASSENGER NAME */
+		init.seekg(22, ios::cur);
+		while ((ch = init.get()) != '\r')
+			++how_much_go_back;
+		init.seekg(-1 * (how_much_go_back+1), ios::cur);
+		passengerName = new char[how_much_go_back + 1];
+		for (int i = 0; i < how_much_go_back; ++i)
+			passengerName[i] = init.get();
+		passengerName[how_much_go_back] = '\0';
+		how_much_go_back = 0;
+		/* FLIGHT LOCATION */
+		init.seekg(13, ios::cur);
+		while ((ch = init.get()) != '\r')
+			++how_much_go_back;
+		init.seekg(-1 * (how_much_go_back+1), ios::cur);
+		flightLocation = new char[how_much_go_back + 1];
+		for (int i = 0; i < how_much_go_back; ++i)
+			flightLocation[i] = init.get();
+		flightLocation[how_much_go_back] = '\0';
+		/* PRICE */
+		init.seekg(13, ios::cur);
+		init >> money;
+
+		ticket *solding_ticket = new ticket(tick, passengerName, flightLocation, money);
+
+		sold_tickets.push_back(solding_ticket);
+		init.seekg(3, ios::cur);
+	}
 	init.close();
+	
 	cout << "\n<<< Information about CashRegister#" << number << " initialized from file. >>>\n";
 
 	return 1;
 }
 //for updating prog
-void CashRegister::sold(char* flightLocation, char* passangerName, size_t amount_of_tickets)
+void CashRegister::sold(char* flightLocation, size_t money, char* passengerName, size_t amount_of_tickets)
 {
+	set_passenger();
+	set_passenger(passengerName);
+	/* FIND IN RETURNED TICKETS */
+	bool isInReturned = false;
+	vector<ticket*>::iterator r_ticket = returned_tickets.begin();
+	while (r_ticket != returned_tickets.end())
+	{
+		if (!strcmp((*r_ticket)->get_route(), flightLocation))
+		{
+			isInReturned = true;
+			break;
+		}
+		++r_ticket;
+	}
 	/* SHOULD FIND IN MAP flightLocation */
-	bool isFlightPossible = false; // NOT WRITTEN
+	bool isFlightPossible = false; 
+	vector<char*>::iterator flights = avaliable_flights.begin();
+	while (flights != avaliable_flights.end())
+	{
+		if (!strcmp(*flights, flightLocation))
+		{
+			isFlightPossible = true;
+			break;
+		}
+		++flights;
+	}
+
 	bool isPaperEnough = (amount_of_tickets <= paper_remained) ? true : false;
-	
+
 	// price also
+	bool isMoney = ((max_amount_of_money - (money*amount_of_tickets+earned_money)) > 0) ? true: false;
+
+	if (isMoney && isFlightPossible && isPaperEnough)
+	{
+		if (isInReturned)
+		{
+			size_t ticket_num = (*r_ticket)->get_num();
+			earned_money += money*amount_of_tickets;
+			num_sold_tickets += amount_of_tickets;
+			for (size_t i = 0; i < amount_of_tickets; ++i)
+			{
+				ticket *solding_ticket = new ticket(ticket_num, passengerName, flightLocation, money);
+
+				sold_tickets.push_back(solding_ticket);
+			}
+		}
+		else
+		{
+			earned_money += money*amount_of_tickets;
+			paper_remained -= amount_of_tickets;
+			num_sold_tickets += amount_of_tickets;
+			for (size_t i = 0; i < amount_of_tickets; ++i)
+			{
+				ticket *solding_ticket = new ticket(rand() % 9000 + 1000, passengerName, flightLocation, money);
+
+				sold_tickets.push_back(solding_ticket);
+			}
+		}
+		cout << "\n<<< Sold ticket to " << passengerName << " was successful. >>>\n";
+	}
+	else 
+		cout << "\n<<< Sold ticket to " << passengerName << " was unsuccessful. >>>\n";
+
+	set_passenger("empty");
 }
+int CashRegister::set_passenger(char *passengerName)
+{
+	if (passengerName)
+	{
+		int length = strlen(passengerName);
+		passenger = new char[length+1];
+		for (int i = 0; i < length; ++i)
+			passenger[i] = passengerName[i];
+		passenger[length] = '\0';
+	}
+	else
+	{
+		delete[]passenger;
+	}
+	
+	return 0;
+}
+

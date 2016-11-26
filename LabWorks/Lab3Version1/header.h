@@ -4,13 +4,11 @@
 #include <string.h>
 #include <fstream>
 #include <iomanip>
-#include <map>
+#include <vector>
 using namespace std;
 
+#include "CashRegister.h"
+#include "ticket.h"
 
 
-struct ticket {
-	size_t number;
-	char *passenger;
-	char *route;
-};
+
