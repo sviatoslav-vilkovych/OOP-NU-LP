@@ -146,6 +146,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CashRegister.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="ticket.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CashRegister.h" />
+    <ClInclude Include="header.h" />
+    <ClInclude Include="ticket.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

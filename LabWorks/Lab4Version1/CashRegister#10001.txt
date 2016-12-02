@@ -1,0 +1,41 @@
+Cash Register #10001 :
+Work hours of this cash:
+	Monday:     -> Weekend <-;
+	Tuesday:     5:00 to 16:00;
+	Wednesday:   10:00 to 18:00;
+	Thursday:    8:00 to 16:00;
+	Friday:      14:00 to 20:00;
+	Saturday:   -> Weekend <-;
+	Sunday:     -> Weekend <-;
+	
+Avaliable flights from the cash:
+	> Lviv
+	> Kiev
+	> Paris
+	> London
+	> Ternopil
+	> New-York
+	> Ivano-Frankivsk
+	> Rome
+	> Berlin
+	> Warsaw
+	!No more avaliable flights registred!
+	
+Already sold 3 tickets;
+Earn 720$ (of maximum 1200);
+Paper remained 27;
+
+List of returned tickets:
+	!No returned tickets!
+
+Sold Tickets:
+	#1041 | Name of passenger: Janna Dark
+		| Route: Paris
+		| Price: 300
+	#1467 | Name of passenger: Yoda
+		| Route: Ivano-Frankivsk
+		| Price: 100
+	#7334 | Name of passenger: Gargn Bernos
+		| Route: Berlin
+		| Price: 320
+	!No solded tickets!
