@@ -46,7 +46,7 @@ public:
 	bool CashRegister::operator>=(CashRegister ob2) { return (number >= ob2.number); };
 	bool CashRegister::operator<=(CashRegister ob2) { return (number <= ob2.number); };
 
-	friend ostream &operator<<(ostream &stream, CashRegister obj);
-	friend istream &operator>>(istream &stream, CashRegister obj);
-	friend ifstream &operator>>(ifstream &stream, CashRegister obj);
+	friend ostream &operator<<(ostream &stream, CashRegister &obj);
+	friend istream &operator>>(istream &stream, CashRegister &obj);
+	friend ifstream &operator>>(ifstream &stream, CashRegister &obj);
 };

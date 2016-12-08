@@ -495,7 +495,7 @@ int CashRegister::set_passenger(char *passengerName)
 	return 0;
 }
 // overloaded functions
-ostream &operator<<(ostream &stream, CashRegister obj)
+ostream &operator<<(ostream &stream, CashRegister &obj)
 {
 	/*char cashRegister[10];
 	_itoa_s(obj.number, cashRegister, 10, 10);*/
@@ -584,7 +584,7 @@ ostream &operator<<(ostream &stream, CashRegister obj)
 
 	return stream;
 }
-istream &operator>>(istream &stream, CashRegister obj)
+istream &operator>>(istream &stream, CashRegister &obj)
 {
 	stream.clear();
 	cout << "__________________________________________________________________________\n";
@@ -627,7 +627,7 @@ istream &operator>>(istream &stream, CashRegister obj)
 	cout << "__________________________________________________________________________\n";
 	return stream;
 }
-ifstream &operator >> (ifstream &stream, CashRegister obj)
+ifstream &operator >> (ifstream &stream, CashRegister &obj)
 {
 	//char cashRegister[10];
 	//_itoa_s(number, cashRegister, 10, 10);
@@ -649,6 +649,11 @@ ifstream &operator >> (ifstream &stream, CashRegister obj)
 		cout << "Can not open " << str << " file.\n";
 		return 1;
 	}*/
+	if (!stream)
+	{
+		cout << "Can not open this file.\n";
+		exit(1);
+	}
 
 	char ch;
 	while ((ch = stream.get()) != 9); // horizontal tab = 9
