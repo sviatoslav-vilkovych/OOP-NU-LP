@@ -13,6 +13,10 @@ size_t CashSystem::freeCashNum = 10000;
 int main() {
 	
 	CashRegister obj,obj2;
+	if (obj < obj2)
+	{
+		cout << "#2.2 : obj<obj2";
+	}
 	/// IT IS LAB5
 	/// 1.3.4, 1.3.2, 1.3.1
 	//prDeliveredFromCashRegister OBJ;

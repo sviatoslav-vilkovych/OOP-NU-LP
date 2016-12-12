@@ -8,6 +8,7 @@ Cash::Cash()
 	earned_money = 0;
 	max_amount_of_money = 10000;
 	paper_remained = 1000;
+	machine = MarketMachine;
 }
 
 

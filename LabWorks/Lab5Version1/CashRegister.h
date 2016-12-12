@@ -28,7 +28,7 @@ public:
 	int set_passenger(char *passengernName = NULL);
 
 	virtual bool operator==(CashRegister& ob2) { return (number == ob2.number); };
-	virtual bool operator<(CashRegister& ob2) { return (number < ob2.number); };
+	
 	virtual bool operator>(CashRegister& ob2) { return (number > ob2.number); };
 	virtual bool operator>=(CashRegister& ob2) { return (number >= ob2.number); };
 	virtual bool operator<=(CashRegister& ob2) { return (number <= ob2.number); };

@@ -14,5 +14,6 @@ public:
 	~Cash();
 	virtual bool sold() = 0;
 	virtual void printClass() = 0;
+	virtual bool operator<(Cash& ob2) { return (number < ob2.number); };
 };
 

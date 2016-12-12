@@ -113,11 +113,14 @@
     <ClCompile Include="Cash.cpp" />
     <ClCompile Include="CashRegister.cpp" />
     <ClCompile Include="CashSystem.cpp" />
+    <ClCompile Include="interfaceAutoNumObj.cpp" />
+    <ClCompile Include="interfaceConvertObjToStr.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pbDeliveredFromCashRegister.cpp" />
     <ClCompile Include="prDeliveredFromCashRegister.cpp" />
     <ClCompile Include="ptDelivedFromCashRegister.cpp" />
     <ClCompile Include="ticket.cpp" />
+    <ClCompile Include="TrainCashNetwork.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cash.h" />
@@ -125,10 +128,12 @@
     <ClInclude Include="CashSystem.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="interfaceAutoNumObj.h" />
+    <ClInclude Include="interfaceConvertObjToStr.h" />
     <ClInclude Include="pbDeliveredFromCashRegister.h" />
     <ClInclude Include="prDeliveredFromCashRegister.h" />
     <ClInclude Include="ptDelivedFromCashRegister.h" />
     <ClInclude Include="ticket.h" />
+    <ClInclude Include="TrainCashNetwork.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
