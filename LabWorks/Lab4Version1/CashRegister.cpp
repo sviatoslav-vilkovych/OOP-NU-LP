@@ -58,6 +58,27 @@ CashRegister::CashRegister(const CashRegister &obj)
 }
 CashRegister::~CashRegister() 
 {
+	vector<char*>::iterator flights;
+	flights = avaliable_flights.begin();
+	while (flights != avaliable_flights.end())
+	{
+		delete *flights;
+		++flights;
+	}
+
+	vector<ticket*>::iterator tickets;
+	tickets = returned_tickets.begin();
+	while (tickets != returned_tickets.end())
+	{
+		delete *tickets;
+		++tickets;
+	}
+	tickets = sold_tickets.begin();
+	while (tickets != sold_tickets.end())
+	{
+		delete *tickets;
+		++tickets;
+	}
 	returned_tickets.clear();
 	sold_tickets.clear();
 	avaliable_flights.clear();
@@ -495,139 +516,7 @@ int CashRegister::set_passenger(char *passengerName)
 	return 0;
 }
 // overloaded functions
-ostream &operator<<(ostream &stream, CashRegister &obj)
-{
-	/*char cashRegister[10];
-	_itoa_s(obj.number, cashRegister, 10, 10);*/
-
-	/* strcat_s somewhy don't work with dynamic memory. */
-
-	/*char str[40];
-	strcpy_s(str, "CashRegister#");
-	strcat_s(str, cashRegister);
-	strcat_s(str, ".txt");*/
-
-	// fstream output(str, ios::out | ios::trunc); TO MAIN
-
-	stream << "Cash Register #" << obj.number << " :\n";
-
-	/* WORK HOURS */
-	stream << "Work hours of this cash:\n\t";
-	char *nameOfDays[7] = { { "Monday: " },{ "Tuesday: " },{ "Wednesday: " } ,{ "Thursday: " } ,{ "Friday: " } ,{ "Saturday: " } ,{ "Sunday: " } };
-	stream.setf(ios::left);
-	for (int i = 0; i < 7; ++i)
-	{
-		stream << setw(12) << nameOfDays[i];
-		if (obj.work_hours[0][i]<0 || obj.work_hours[1][i] <0)
-			stream << ("-> Weekend <-;\n\t");
-		else
-			stream << " " << obj.work_hours[0][i] << ":00 to " << obj.work_hours[1][i] << ":00;\n\t";
-	}
-	/* AVALIABLE FLIGHTS */
-	stream << "\nAvaliable flights from the cash:\n\t";
-	vector<char*>::iterator flights;
-	flights = obj.avaliable_flights.begin();
-	if (flights == obj.avaliable_flights.end())
-		stream << "!No avaliable flights registred!\n\t";
-	else
-	{
-		while (flights != obj.avaliable_flights.end())
-		{
-			stream << "> " << *flights << "\n\t";
-			++flights;
-		}
-		stream << "!No more avaliable flights registred!\n\t";
-	}
-	/* CAUTION! PRIVATE INFORMATION */
-	stream << "\nAlready sold " << obj.num_sold_tickets << " tickets;\n";
-	stream << "Earn " << obj.earned_money << "$ (of maximum " << obj.max_amount_of_money << ");\n";
-	stream << "Paper remained " << obj.paper_remained << ";\n";
-
-	stream << "\nList of returned tickets:\n\t";
-	vector<ticket*>::iterator tickets;
-	tickets = obj.returned_tickets.begin();
-	if (tickets == obj.returned_tickets.end())
-		stream << "!No returned tickets!\n";
-	else
-	{
-		while (tickets != obj.returned_tickets.end())
-		{
-			stream << "#" << (*tickets)->get_num()
-				<< " | Name of passenger: " << (*tickets)->get_pass()
-				<< "\n\t\t| Route: " << (*tickets)->get_route()
-				<< "\n\t\t| Price: " << (*tickets)->get_price() << "\n\t";
-			++tickets;
-		}
-		stream << "!No more returned tickets!\n";
-	}
-	stream << "\nSold Tickets:\n\t";
-	tickets = obj.sold_tickets.begin();
-	if (tickets == obj.sold_tickets.end()) // would be nice to add iterator.
-		stream << "!No sold tickets!\n";
-	else
-	{
-		while (tickets != obj.sold_tickets.end())
-		{
-			stream << "#" << (*tickets)->get_num()
-				<< " | Name of passenger: " << (*tickets)->get_pass()
-				<< "\n\t\t| Route: " << (*tickets)->get_route()
-				<< "\n\t\t| Price: " << (*tickets)->get_price() << "\n\t";
-			++tickets;
-		}
-		stream << "!No more solded tickets!\n";
-	}
-
-	cout << "\n<<< Information about CashRegister#" << obj.number << " written to stream. >>>\n";
-
-	// output.close() TO MAIN
-
-
-	return stream;
-}
-istream &operator>>(istream &stream, CashRegister &obj)
-{
-	stream.clear();
-	cout << "__________________________________________________________________________\n";
-	cout << "Please enter max amount money for cash register before cash collection: ";
-	stream >> obj.max_amount_of_money;
-	if (obj.max_amount_of_money < 0)
-		obj.max_amount_of_money = -obj.max_amount_of_money;
-	cout << "Please enter amount of paper: ";
-	int paper_remained_prot;
-	stream >> paper_remained_prot;
-	obj.paper_remained = (paper_remained_prot < 0) ? -paper_remained_prot : paper_remained_prot;
-
-	cout << "Please enter work hours of this cash ('-1' for weekend):\n\t";
-	char nameOfDays[7][13] = { { "Monday: " },{ "Tuesday: " },{ "Wednesday: " } ,{ "Thursday: " } ,{ "Friday: " } ,{ "Saturday: " } ,{ "Sunday: " } };
-
-	for (int i = 0; i < 7; ++i)
-	{
-		cout << nameOfDays[i] << "\n\t";
-		cout << "| Work starts: ";
-		stream >> obj.work_hours[0][i];
-		cout << "\t| Work ends: ";
-		stream >> obj.work_hours[1][i];
-		cout << "\t";
-
-	}
-
-	cout << "\nPlease enter avaliable flights (\"q\" for quit):\n\t";
-	stream.clear();
-	stream.get();
-	while (true) {
-
-		char *flight = new char[30];
-		stream.getline(flight, 30);
-		if ('\0' == flight[0])
-			break;
-		cout << "\t";
-		obj.avaliable_flights.push_back(flight);
-	}
-	cout.clear();
-	cout << "__________________________________________________________________________\n";
-	return stream;
-}
-ifstream &operator >> (ifstream &stream, CashRegister &obj)
+fstream &operator>>(fstream &stream, CashRegister &obj)
 {
 	//char cashRegister[10];
 	//_itoa_s(number, cashRegister, 10, 10);
@@ -643,11 +532,11 @@ ifstream &operator >> (ifstream &stream, CashRegister &obj)
 	//}
 	//else
 	//	strcpy_s(str, fileName);
-	
+
 	// fstream init(str, ios::in | ios::binary); 
 	/*if (!stream) {
-		cout << "Can not open " << str << " file.\n";
-		return 1;
+	cout << "Can not open " << str << " file.\n";
+	return 1;
 	}*/
 	if (!stream)
 	{
@@ -783,4 +672,137 @@ ifstream &operator >> (ifstream &stream, CashRegister &obj)
 
 	return stream;
 
+} 
+// ALWAYS PUT SHEET LOCATED HIGHER HIGHER SHEET LOCATED LOWER
+ostream &operator<<(ostream &stream, CashRegister &obj)
+{
+	/*char cashRegister[10];
+	_itoa_s(obj.number, cashRegister, 10, 10);*/
+
+	/* strcat_s somewhy don't work with dynamic memory. */
+
+	/*char str[40];
+	strcpy_s(str, "CashRegister#");
+	strcat_s(str, cashRegister);
+	strcat_s(str, ".txt");*/
+
+	// fstream output(str, ios::out | ios::trunc); TO MAIN
+
+	stream << "Cash Register #" << obj.number << " :\n";
+
+	/* WORK HOURS */
+	stream << "Work hours of this cash:\n\t";
+	char *nameOfDays[7] = { { "Monday: " },{ "Tuesday: " },{ "Wednesday: " } ,{ "Thursday: " } ,{ "Friday: " } ,{ "Saturday: " } ,{ "Sunday: " } };
+	stream.setf(ios::left);
+	for (int i = 0; i < 7; ++i)
+	{
+		stream << setw(12) << nameOfDays[i];
+		if (obj.work_hours[0][i]<0 || obj.work_hours[1][i] <0)
+			stream << ("-> Weekend <-;\n\t");
+		else
+			stream << " " << obj.work_hours[0][i] << ":00 to " << obj.work_hours[1][i] << ":00;\n\t";
+	}
+	/* AVALIABLE FLIGHTS */
+	stream << "\nAvaliable flights from the cash:\n\t";
+	vector<char*>::iterator flights;
+	flights = obj.avaliable_flights.begin();
+	if (flights == obj.avaliable_flights.end())
+		stream << "!No avaliable flights registred!\n\t";
+	else
+	{
+		while (flights != obj.avaliable_flights.end())
+		{
+			stream << "> " << *flights << "\n\t";
+			++flights;
+		}
+		stream << "!No more avaliable flights registred!\n\t";
+	}
+	/* CAUTION! PRIVATE INFORMATION */
+	stream << "\nAlready sold " << obj.num_sold_tickets << " tickets;\n";
+	stream << "Earn " << obj.earned_money << "$ (of maximum " << obj.max_amount_of_money << ");\n";
+	stream << "Paper remained " << obj.paper_remained << ";\n";
+
+	stream << "\nList of returned tickets:\n\t";
+	vector<ticket*>::iterator tickets;
+	tickets = obj.returned_tickets.begin();
+	if (tickets == obj.returned_tickets.end())
+		stream << "!No returned tickets!\n";
+	else
+	{
+		while (tickets != obj.returned_tickets.end())
+		{
+			stream << "#" << (*tickets)->get_num()
+				<< " | Name of passenger: " << (*tickets)->get_pass()
+				<< "\n\t\t| Route: " << (*tickets)->get_route()
+				<< "\n\t\t| Price: " << (*tickets)->get_price() << "\n\t";
+			++tickets;
+		}
+		stream << "!No more returned tickets!\n";
+	}
+	stream << "\nSold Tickets:\n\t";
+	tickets = obj.sold_tickets.begin();
+	if (tickets == obj.sold_tickets.end()) // would be nice to add iterator.
+		stream << "!No sold tickets!\n";
+	else
+	{
+		while (tickets != obj.sold_tickets.end())
+		{
+			stream << "#" << (*tickets)->get_num()
+				<< " | Name of passenger: " << (*tickets)->get_pass()
+				<< "\n\t\t| Route: " << (*tickets)->get_route()
+				<< "\n\t\t| Price: " << (*tickets)->get_price() << "\n\t";
+			++tickets;
+		}
+		stream << "!No more solded tickets!\n";
+	}
+
+	cout << "\n<<< Information about CashRegister#" << obj.number << " written to stream. >>>\n";
+
+	// output.close() TO MAIN
+
+
+	return stream;
+}
+istream &operator>>(istream &stream, CashRegister &obj)
+{
+	stream.clear();
+	cout << "__________________________________________________________________________\n";
+	cout << "Please enter max amount money for cash register before cash collection: ";
+	stream >> obj.max_amount_of_money;
+	if (obj.max_amount_of_money < 0)
+		obj.max_amount_of_money = -obj.max_amount_of_money;
+	cout << "Please enter amount of paper: ";
+	int paper_remained_prot;
+	stream >> paper_remained_prot;
+	obj.paper_remained = (paper_remained_prot < 0) ? -paper_remained_prot : paper_remained_prot;
+
+	cout << "Please enter work hours of this cash ('-1' for weekend):\n\t";
+	char nameOfDays[7][13] = { { "Monday: " },{ "Tuesday: " },{ "Wednesday: " } ,{ "Thursday: " } ,{ "Friday: " } ,{ "Saturday: " } ,{ "Sunday: " } };
+
+	for (int i = 0; i < 7; ++i)
+	{
+		cout << nameOfDays[i] << "\n\t";
+		cout << "| Work starts: ";
+		stream >> obj.work_hours[0][i];
+		cout << "\t| Work ends: ";
+		stream >> obj.work_hours[1][i];
+		cout << "\t";
+
+	}
+
+	cout << "\nPlease enter avaliable flights (\"q\" for quit):\n\t";
+	stream.clear();
+	stream.get();
+	while (true) {
+
+		char *flight = new char[30];
+		stream.getline(flight, 30);
+		if ('\0' == flight[0])
+			break;
+		cout << "\t";
+		obj.avaliable_flights.push_back(flight);
+	}
+	cout.clear();
+	cout << "__________________________________________________________________________\n";
+	return stream;
 }

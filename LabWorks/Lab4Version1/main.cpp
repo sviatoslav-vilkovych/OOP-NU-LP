@@ -46,25 +46,36 @@ int main() {
 	else
 		strcpy_s(strIn, fileName);
 	fstream init(strIn, ios::in | ios::binary);
-	
+	if (!init)
+	{
+		cout << "Can not open file with \"" << strIn << "\" name.\n";
+	}
+
 	init >> obj2;
 	if (obj2.sold())
 		obj2.sold("Berlin", 320, "Gargn Bernos");
 	
 
-	/// IT IS LAB3
-	//obj.initClass();
-	//if(obj.sold())
-	//	obj.sold("Paris", 300 ,"Janna Dark");
-	//if (obj.sold())
-	//	obj.sold("Ivano-Frankivsk", 100, "Yoda");
-	//obj.printClassToFile();
-	//obj.printClass();
+	CashRegister objects[10];
+	// swap
+	swap(objects[2], objects[7]);
+	swap(objects[1], objects[4]);
 
-	//obj2.initClassFromFile("CashRegister#10000.txt");
-	//if (obj2.sold())
-	//	obj2.sold("Berlin", 320, "Gargn Bernos");
-	//obj2.printClassToFile();
+	// end swap
+	bool isSorted = false;
+	while (!isSorted)
+	{
+		isSorted = true;
+		for (int i = 0; i < 8; ++i)
+		{
+			if (objects[i] > objects[i + 1])
+			{
+				swap(objects[i], objects[i + 1]);
+				isSorted = false;
+			}
+		}
+	}
+
 	init.close();
 	
 

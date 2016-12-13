@@ -1,9 +1,3 @@
 ﻿  TrainCashNetwork.cpp
-  main.cpp
-  interfaceConvertObjToStr.cpp
-  interfaceAutoNumObj.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  pbDeliveredFromCashRegister.cpp
-  Lab6Version1.vcxproj -> D:\Desktop\pg\Visual Studio\Study in NU LP\II stage\OOP\LabWorks\Debug\Lab6Version1.exe
-  Lab6Version1.vcxproj -> D:\Desktop\pg\Visual Studio\Study in NU LP\II stage\OOP\LabWorks\Debug\Lab6Version1.pdb (Partial PDB)
+d:\desktop\pg\visual studio\study in nu lp\ii stage\oop\labworks\lab6version1\traincashnetwork.h(19): error C2535: 'std::ofstream &TrainCashNetwork::operator <<(std::ofstream &)': member function already defined or declared
+  d:\desktop\pg\visual studio\study in nu lp\ii stage\oop\labworks\lab6version1\traincashnetwork.h(18): note: see declaration of 'TrainCashNetwork::operator <<'

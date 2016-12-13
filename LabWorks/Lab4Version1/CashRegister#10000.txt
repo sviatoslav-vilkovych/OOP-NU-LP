@@ -1,23 +1,25 @@
 Cash Register #10000 :
 Work hours of this cash:
 	Monday:     -> Weekend <-;
-	Tuesday:     8:00 to 16:00;
-	Wednesday:   10:00 to 18:00;
-	Thursday:    7:00 to 15:00;
-	Friday:      11:00 to 19:00;
-	Saturday:   -> Weekend <-;
-	Sunday:     -> Weekend <-;
+	Tuesday:     5:00 to 18:00;
+	Wednesday:   6:00 to 17:00;
+	Thursday:    10:00 to 20:00;
+	Friday:     -> Weekend <-;
+	Saturday:    14:00 to 21:00;
+	Sunday:      7:00 to 17:00;
 	
 Avaliable flights from the cash:
 	> Lviv
-	> Kiev
+	> Kyiv
+	> Ternopil
+	> Warsaw
 	> London
 	> Berlin
-	> Paris
-	> Ivano-Frankivsk
-	> Ternopil
 	> New-York
-	> Warsaw
+	> Ivano-Frankivsk
+	> Rome
+	> Barselona
+	> Paris
 	!No more avaliable flights registred!
 	
 Already sold 2 tickets;
@@ -35,25 +37,3 @@ Sold Tickets:
 		| Route: Ivano-Frankivsk
 		| Price: 100
 	!No more solded tickets!
-Cash Register #10001 :
-Work hours of this cash:
-	Monday:      8:00 to 18:00;
-	Tuesday:     8:00 to 18:00;
-	Wednesday:   8:00 to 18:00;
-	Thursday:    8:00 to 18:00;
-	Friday:      8:00 to 18:00;
-	Saturday:   -> Weekend <-;
-	Sunday:     -> Weekend <-;
-	
-Avaliable flights from the cash:
-	!No avaliable flights registred!
-	
-Already sold 0 tickets;
-Earn 0$ (of maximum 10000);
-Paper remained 858993460;
-
-List of returned tickets:
-	!No returned tickets!
-
-Sold Tickets:
-	!No sold tickets!
