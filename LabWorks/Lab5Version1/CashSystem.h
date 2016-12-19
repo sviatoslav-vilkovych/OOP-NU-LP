@@ -17,5 +17,6 @@ public:
 	// overloaded functions
 	virtual bool sold() { return (!strcmp(passenger, "empty")) ? 1 : 0; };
 	virtual void printClass();
+	//virtual bool operator<(Cash& ob2) { return ((number < ob2.number)&&(machine == ob2.machine)); }; WHY?
 };
 

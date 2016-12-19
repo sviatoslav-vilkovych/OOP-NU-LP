@@ -15,17 +15,17 @@ int main() {
 	CashRegister obj,obj2;
 	if (obj < obj2)
 	{
-		cout << "#2.2 : obj<obj2";
+		cout << "#2.2 : obj<obj2\n";
 	}
 	/// IT IS LAB5
+	/// 1.3.3 
+	/*prDeliveredFromCashRegister OBJ;
+	OBJ.initClass();*/
 	/// 1.3.4, 1.3.2, 1.3.1
-	//prDeliveredFromCashRegister OBJ;
-	//OBJ.initClass();
-	/// 1.3.3
-	//pbDeliveredFromCashRegister OBJ;
-	//OBJ.initClass();
-	//OBJ.CashSystem::printClass(); // from CashSystem
-	//OBJ.printClass(); // from CashRegister
+	//pbDeliveredFromCashRegister OBJ_pb;
+	//OBJ_pb.initClass();
+	//OBJ_pb.CashSystem::printClass(); // from CashSystem
+	//OBJ_pb.printClass(); // from CashRegister
 
 	// OUTPUT
 	char cashRegisterOut[10];
