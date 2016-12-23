@@ -1,8 +1,8 @@
 #pragma once
 #include "pbDeliveredFromCashRegister.h"
-#include "interfaceAutoNumObj.h"
-#include "interfaceConvertObjToStr.h"
-class TrainCashNetwork : public pbDeliveredFromCashRegister, public interfaceConvertObjToStr, public interfaceAutoNumObj
+#include "IAutoNumObj.h"
+#include "IConvertObjToStr.h"
+class TrainCashNetwork : public pbDeliveredFromCashRegister, public IConvertObjToStr, public IAutoNumObj
 {
 public:
 	TrainCashNetwork();
@@ -13,9 +13,11 @@ public:
 
 	virtual int numOfObj() { return (this->number); };
 	virtual int amountOfObj() { return ((this->freeCashNum) - 10000); };
+	
+	virtual void Sort(IAutoNumObj *obj);
+	virtual ostream& operator<<(ostream &str);
+	virtual istream& operator>>(istream &str);
 
-	virtual void Sort(interfaceAutoNumObj *obj);
-	virtual ofstream& operator<<(ofstream &str);
-	virtual ofstream& operator<<(ofstream &str);
+	friend void convertElemObjToStr(char*,const size_t&,const size_t&);
 };
 

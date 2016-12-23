@@ -1,3 +1,3 @@
 ﻿  TrainCashNetwork.cpp
-d:\desktop\pg\visual studio\study in nu lp\ii stage\oop\labworks\lab6version1\traincashnetwork.h(19): error C2535: 'std::ofstream &TrainCashNetwork::operator <<(std::ofstream &)': member function already defined or declared
-  d:\desktop\pg\visual studio\study in nu lp\ii stage\oop\labworks\lab6version1\traincashnetwork.h(18): note: see declaration of 'TrainCashNetwork::operator <<'
+d:\desktop\pg\visual studio\study in nu lp\ii stage\oop\labworks\lab6version1\traincashnetwork.cpp(15): error C2660: '_itoa_s': function does not take 3 arguments
+d:\desktop\pg\visual studio\study in nu lp\ii stage\oop\labworks\lab6version1\traincashnetwork.cpp(17): error C2065: 'sNUmber': undeclared identifier

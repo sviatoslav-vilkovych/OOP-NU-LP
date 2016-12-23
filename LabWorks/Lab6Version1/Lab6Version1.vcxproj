@@ -113,8 +113,8 @@
     <ClCompile Include="Cash.cpp" />
     <ClCompile Include="CashRegister.cpp" />
     <ClCompile Include="CashSystem.cpp" />
-    <ClCompile Include="interfaceAutoNumObj.cpp" />
-    <ClCompile Include="interfaceConvertObjToStr.cpp" />
+    <ClCompile Include="IAutoNumObj.cpp" />
+    <ClCompile Include="IConvertObjToStr.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pbDeliveredFromCashRegister.cpp" />
     <ClCompile Include="prDeliveredFromCashRegister.cpp" />
@@ -127,8 +127,8 @@
     <ClInclude Include="CashRegister.h" />
     <ClInclude Include="CashSystem.h" />
     <ClInclude Include="header.h" />
-    <ClInclude Include="interfaceAutoNumObj.h" />
-    <ClInclude Include="interfaceConvertObjToStr.h" />
+    <ClInclude Include="IAutoNumObj.h" />
+    <ClInclude Include="IConvertObjToStr.h" />
     <ClInclude Include="pbDeliveredFromCashRegister.h" />
     <ClInclude Include="prDeliveredFromCashRegister.h" />
     <ClInclude Include="ptDelivedFromCashRegister.h" />

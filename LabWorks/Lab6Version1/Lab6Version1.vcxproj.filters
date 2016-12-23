@@ -39,13 +39,13 @@
     <ClCompile Include="ticket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="interfaceAutoNumObj.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="interfaceConvertObjToStr.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TrainCashNetwork.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IConvertObjToStr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IAutoNumObj.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,13 +74,13 @@
     <ClInclude Include="ticket.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="interfaceAutoNumObj.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interfaceConvertObjToStr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TrainCashNetwork.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IAutoNumObj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IConvertObjToStr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
