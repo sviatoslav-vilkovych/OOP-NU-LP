@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Barcode.cs" />
     <Compile Include="CashRegister.cs" />
+    <Compile Include="Good.cs" />
     <Compile Include="Goods.cs" />
     <Compile Include="GoodsSet.cs" />
     <Compile Include="IBarCode.cs" />
